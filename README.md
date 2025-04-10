@@ -64,66 +64,6 @@ Este proyecto es una **calculadora cotizadora de servicios** diseñada para perm
 ✅ Integrar la solución en una página web alojada en Firebase.  
 ✅ Facilitar el mantenimiento y escalabilidad del sistema.  
 
----
-
-## 🚀 Características  
-
-✔ **Interfaz dinámica** con HTML, CSS y JavaScript.  
-✔ **Backend seguro** con Node.js en Firebase Functions.  
-✔ **Precios ocultos en el servidor**, evitando su exposición en el frontend.  
-✔ **Cálculo automático del total** basado en los servicios seleccionados.  
-✔ **Desplegable en Firebase Hosting** con integración en tiempo real.  
-
----
-
-## 🏗️ Estructura del Proyecto  
-
-
----
-
-## 🛠️ Tecnologías Utilizadas  
-
-| Tecnología  | Uso |
-|-------------|------------------|
-| **Firebase** | Hosting y backend serverless |
-| **Node.js**  | Lógica del backend |
-| **Express.js** | API para manejar peticiones |
-| **HTML5, CSS3** | Interfaz de usuario |
-| **JavaScript** | Dinámica del frontend |
-
----
-
-## ⚙️ Instalación y Configuración  
-
-### 🔹 1. Clonar el Repositorio  
-```sh
-git clone https://github.com/san77i/calculadora-cotizadora.git
-cd calculadora-cotizadora
-
-cd functions
-npm install
-
-firebase login
-firebase init
-
-
-{
-  "redes_sociales": "instagram",
-  "reels": "2",
-  "feeds": "3",
-  "portadas": "1",
-  "embudo": true,
-  "leads": true,
-  "reuniones": true,
-  "guiones": true,
-  "pagina_web": "2"
-}
-
-
-{
-  "total": 1520
-}
-
 
 🔒 Seguridad
 ✔ Precios ocultos en el backend: No pueden verse desde el frontend ni en herramientas de desarrollo del navegador.
@@ -135,8 +75,6 @@ Este proyecto está bajo la licencia MIT, lo que permite su uso, modificación y
 
 📞 Contacto
 Si tienes dudas o sugerencias, puedes escribirme a sanattaque@gmail.com 📩
-
-🚀 ¡Disfruta tu calculadora cotizadora! 🚀
 
 
 
