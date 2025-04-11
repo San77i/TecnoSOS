@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "keywords": ["cotizador", "tecnoSOS", "node", "express"],
-  "author": "Tu Nombre",
+  "author": "Tecno-SOS",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
