@@ -24,14 +24,13 @@ const calcularCotizacion = async () => {
     };
 
     try {
-       const response = await fetch("https://tecnosos.onrender.com/cotizar", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(data)
-});
-
+        const response = await fetch("https://tecnosos.onrender.com/cotizar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(seleccion) 
+        });
 
         const data = await response.json();
         document.getElementById("total").textContent = data.total;
@@ -40,7 +39,6 @@ const calcularCotizacion = async () => {
     }
 };
 
-// Asignar evento a cada campo
 campos.forEach(id => {
     const campo = document.getElementById(id);
     if (campo) {
