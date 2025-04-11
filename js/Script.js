@@ -6,7 +6,6 @@ const campos = [
     "pagina_web",
     "embudo",
     "leads",
-    "reuniones",
     "guiones"
 ];
 
@@ -18,7 +17,6 @@ const calcularCotizacion = async () => {
         portadas: document.getElementById("portadas").value,
         embudo: document.getElementById("embudo").checked,
         leads: document.getElementById("leads").checked,
-        reuniones: document.getElementById("reuniones").checked,
         guiones: document.getElementById("guiones").checked,
         pagina_web: document.getElementById("pagina_web").value
     };
