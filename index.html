@@ -44,14 +44,14 @@
       <div class="masthead-heading text-uppercase d-inline-flex flex-row justify-content-start align-items-center flex-grow-1 bg-info text-center w-100 mx-2" style="border-top-right-radius: 30px;">
         <h1>Bienvenidos a Tecno-SOS</h1>
       </div>
-      <a class="btn btn-xl text-uppercase btn-primary text-info ml-5" href="#services" style="float: left; text-shadow: 5px 1px 7px black;">Agenda tu DEMO</a>
+      <a class="btn btn-xl text-uppercase btn-primary text-info ml-5" href="#services" style="float: left; text-shadow: 0.5rem 0.1rem 0.7rem black;">Agenda tu DEMO</a>
     </div>
   </header>
   <!-- Inicio-->
-  <section class="page-section bg-light text-left pl-3 pt-0 pb-0 pr-3" id="page-top">
+ <section class="page-section bg-light text-left px-md-3 pt-0 pb-0" id="page-top">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6"><img class="img-fluid d-block pt-5" src="FOTOS/15.webp" width="100%"></div>
+        <img class="img-fluid d-block pt-5" src="FOTOS/15.webp">
         <div class="col-md-6 pb-5">
           <p class="text-lg font-weight-normal pt-5" style="font-size: 2.9rem; text-align: center;">En <b>Tecno-SOS</b>, nuestra misión es ayudarte a ahorrar tiempo, mejorar la eficiencia y potenciar tu negocio.</p>
         </div>
@@ -120,9 +120,9 @@
       <div class="col-md-7">
         <div id="carouselExample" class="carousel slide carousel-dark" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item" style="max-width: 80%; transform: translateX(50%); width: 50%; min-height: 20%;">
+            <div class="carousel-item">
               <div class="d-flex align-items-start">
-                <img src="FOTOS/IG.jpg" class="rounded w-25" alt="Imagen 1">
+               <img src="FOTOS/IG.jpg" class="img-fluid rounded" alt="Imagen 1">
                 <div class="p-3 rounded-4 bg-info text-dark d-flex flex-grow-1 w-50">
                   <h5 class="text-uppercase font-weight-bold text-center w-100">INSTAGRAM</h5>
                 </div>
@@ -137,7 +137,7 @@
             </div>
             <div class="carousel-item">
               <div class="align-items-star d-inline-flex flex-row justify-content-center">
-                <img src="FOTOS/FB.png" class="" alt="Imagen 2" style="width: 15%; min-height: 5%; height: 10%;">
+                <img src="FOTOS/FB.png" class="img-fluid" alt="Imagen 2">
                 <div class="p-3 rounded-3 bg-info text-dark d-flex flex-grow-1 w-50" style="transform: translateX(43%); max-width: 40%; height: 10%;">
                   <h5 class="text-uppercase font-weight-bold text-center w-100">FACEBOOK</h5>
                 </div>
@@ -158,7 +158,7 @@
             </div>
             <div class="carousel-item">
               <div class="d-flex align-items-start">
-                <img src="FOTOS/WB.jpg" class="rounded w-25" alt="Imagen 3" style="height: 10%; min-width: 15%;">
+               <img src="FOTOS/WB.jpg" class="img-fluid rounded" alt="Imagen 3">
                 <div class="p-3 rounded-4 bg-info text-dark d-flex flex-grow-1 w-50" style="min-width: 15%; width: 15%; height: 8%; min-height: 1%; max-width: 60%; transform: translateX(5%);">
                   <h5 class="text-uppercase font-weight-bold text-center w-100" style="transform: translateX(5%); min-width: 1%; width: 1%; min-height: 1%; height: 1%;">WHATSAPP BUSINESS</h5>
                 </div>
@@ -176,7 +176,7 @@
             </div>
             <div class="carousel-item active">
               <div class="d-flex align-items-start">
-                <img src="FOTOS/IN.png" class="rounded w-25" alt="Imagen 4" style="min-width: 10%; max-width: 10%;">
+               <img src="FOTOS/IN.png" class="img-fluid rounded" alt="Imagen 4">
                 <div class="p-3 rounded-4 bg-info text-dark d-flex flex-grow-1 w-50" style="max-width: 40%; min-height: 10%; transform: translateX(40%);">
                   <h5 class="text-uppercase font-weight-bold text-center w-100" style="">LINKEDIN</h5>
                 </div>
@@ -377,8 +377,14 @@
   <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
   <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-  <div onclick="window.open('https://wa.me/5215631019496', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right: 20px;
-           display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;">
+ <div class="whatsapp-button">
+  <!-- Caja de texto -->
+  <div class="whatsapp-text"> ¡Habla con nosotros ahora! </div>
+  <!-- Logo de WhatsApp en círculo -->
+  <div class="whatsapp-icon">
+    <i class="fab fa-whatsapp"></i>
+  </div>
+</div>
     <!-- Caja de texto -->
     <div style="background-color: #25D366; color: white; padding: 12px 20px; 
         border-radius: 20px; font-size: 16px; font-weight: bold;"> ¡Habla con nosotros ahora! </div>
