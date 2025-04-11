@@ -21,14 +21,13 @@ const precios = {
     "whatsapp+linkedin": 180,
     "todas": 300
   },
-  reels: { "1": 50, "2": 90, "3": 120, "4": 140 },
-  flyers: { "1": 40, "2": 70, "3": 100, "4": 120 },
-  portadas: { "1": 30, "2": 50, "3": 70, "4": 90 },
-  pagina_web: { "1": 300, "2": 500, "3": 700, "4": 900 },
-  embudo: 150,
-  leads: 200,
-  reuniones: 100,
-  guiones: 80
+  reels: { "10": 300, "20": 600, "30": 900, "40": 1200 },
+  flyers: { "10": 150, "2": 300, "3": 450, "4": 600 },
+  portadas: { "1": 20, "2": 40, "3": 60, "4": 80 },
+  pagina_web: { "1": 400, "2": 800, "3": 1200, "4": 1600 },
+  embudo: 200,
+  leads: 15,
+  guiones: 30
 };
 
 app.post("/cotizar", (req, res) => {
@@ -52,7 +51,6 @@ app.post("/cotizar", (req, res) => {
   }
   if (s.embudo) total += precios.embudo;
   if (s.leads) total += precios.leads;
-  if (s.reuniones) total += precios.reuniones;
   if (s.guiones) total += precios.guiones;
 
   res.json({ total });
