@@ -1,7 +1,7 @@
+const express = require("express");
 const cors = require("cors");
-app.use(cors());
 
-const app = express();
+const app = express(); // Esta línea tiene que ir antes de usar `app`
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
