@@ -24,11 +24,14 @@ const calcularCotizacion = async () => {
     };
 
     try {
-        const response = await fetch("https://tecnosos.onrender.com/Cotizar", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(seleccion)
-        });
+       const response = await fetch("https://tecnosos.onrender.com/cotizar", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
+});
+
 
         const data = await response.json();
         document.getElementById("total").textContent = data.total;
