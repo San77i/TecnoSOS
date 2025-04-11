@@ -473,8 +473,8 @@ legend + * {
 }
 
 .circular-icon {
-  width: 130px; /* Ajusta el tamaño si es necesario */
-  height: 130px;
+  width: 10rem; /* Ajusta el tamaño de forma responsiva */
+  height: 10rem;
   border-radius: 50%; /* Hace que la imagen sea circular */
   filter: grayscale(100%); /* Aplica escala de grises */
   transition: filter 0.3s ease-in-out;
@@ -765,7 +765,9 @@ progress {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: invert(1);
+  filter: invert(1);
+  width: 2rem; /* Tamaño ajustable */
+  height: 2rem;
 }
 
 
@@ -11345,4 +11347,46 @@ section#contact form#contactForm :-ms-input-placeholder {
   text-align: center;
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.whatsapp-button {
+  cursor: pointer;
+  position: fixed;
+  bottom: 2rem; /* Margen inferior responsivo */
+  right: 2rem; /* Margen derecho responsivo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  z-index: 1000;
+}
+
+.whatsapp-text {
+  background-color: #25D366;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.whatsapp-icon {
+  width: 5rem;
+  height: 5rem;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp-icon i {
+  font-size: 2rem;
+  color: white;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
