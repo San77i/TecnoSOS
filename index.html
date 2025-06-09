@@ -92,7 +92,7 @@
         <!-- ERP -->
         <div class="col-md-4">
           <span class="icon-container">
-            <img src="Redes/02.jpg" alt="ERP Software" class="circular-icon">
+            <img src="Redes/03.jpg" alt="ERP Software" class="circular-icon">
           </span>
           <h4 class="my-3">ERP</h4>
           <p class="text-muted">Centraliza todos los procesos de tu empresa en una sola plataforma, lo que te permite automatizar tareas repetitivas y mejorar la colaboración entre equipos. Esto incrementa la eficiencia y reduce costos.</p>
@@ -100,7 +100,7 @@
         <!-- INSIGHTS ANALÍTICOS -->
         <div class="col-md-4">
           <span class="icon-container">
-            <img src="Redes/03.jpg" alt="Insights Analíticos" class="circular-icon">
+            <img src="Redes/02.jpg" alt="Insights Analíticos" class="circular-icon">
           </span>
           <h4 class="my-3">INSIGHTS ANALÍTICOS</h4>
           <p class="text-muted">Conclusiones valiosas extraídas del análisis de datos, que permiten identificar patrones y tendencias para tomar decisiones informadas y optimizar estrategias. Facilita la comprensión del mercado y la mejora continua.</p>
@@ -263,8 +263,127 @@
       </div>
     </div>
   </div>
-  <!-- Precios-->
+  
+ <!-- Precios-->
+<section class="page-section pl-1 pr-1" id="precios">
+ <style>
+  .fondo {
+    background: url("FOTOS/TI12.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+  }
 
+  .cotizador {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 12px;
+    width: 45%;
+  }
+
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  select:hover {
+    background-color: #007acc;
+    color: white;
+  }
+
+  .boton-agenda {
+    background-color: #007acc;
+    color: #ccc;
+    padding: 20px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .boton-agenda:hover {
+    background-color: #005fa3;
+  }
+</style>
+
+<div class="fondo">
+  <div class="cotizador">
+    <h2>Cotizador de Servicios</h2>
+    <form id="cotizador-form">
+      <label>Redes Sociales</label>
+      <select id="redes_sociales">
+        <option value="">Selecciona</option>
+        <option value="instagram">Instagram</option>
+        <option value="facebook">Facebook</option>
+        <option value="whatsapp">WhatsApp</option>
+        <option value="linkedin">LinkedIn</option>
+        <option value="instagram+facebook">Instagram + Facebook</option>
+        <option value="instagram+whatsapp">Instagram + WhatsApp</option>
+        <option value="instagram+linkedin">Instagram + LinkedIn</option>
+        <option value="facebook+whatsapp">Facebook + WhatsApp</option>
+        <option value="facebook+linkedin">Facebook + LinkedIn</option>
+        <option value="whatsapp+linkedin">WhatsApp + LinkedIn</option>
+        <option value="todas">Todas</option>
+      </select>
+
+      <label>Reels Mensual</label>
+      <select id="reels">
+        <option value="">Selecciona</option>
+        <option value="10">10 Mensual</option>
+        <option value="20">20 Mensual</option>
+        <option value="30">30 Mensual</option>
+        <option value="40">40 Mensual</option>
+      </select>
+
+      <label>Flyers Mensual</label>
+      <select id="flyers">
+        <option value="">Selecciona</option>
+        <option value="10">10 Mensual</option>
+        <option value="20">20 Mensual</option>
+        <option value="30">30 Mensual</option>
+        <option value="40">40 Mensual</option>
+      </select>
+
+      <label>Portadas Mensual</label>
+      <select id="portadas">
+        <option value="">Selecciona</option>
+        <option value="1">1 Mensual</option>
+        <option value="2">2 Mensual</option>
+        <option value="3">3 Mensual</option>
+        <option value="4">4 Mensual</option>
+      </select>
+
+      <label>Páginas web por proyecto</label>
+      <select id="pagina_web">
+        <option value="">Selecciona</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+
+      <label><input type="checkbox" id="embudo"> Embudo MKT y automatización</label><br>
+      <label><input type="checkbox" id="leads"> Leads calificados</label><br>
+      <label><input type="checkbox" id="guiones"> Guiones para campañas</label><br><br>
+
+      <strong>Total: <span id="total">$0</span></strong>
+    </form>
+  </div>
+
+  <a class="boton-agenda" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32gz-JJRvOVmvY1gaMDSOnf8QKf3IG_HQfjyZAVUjlbDPZ_j1bC7K1_TbmqXR7hJaLSrOk-45x?gv=true" target="_blank">
+    Agenda tu demo
+  </a>
+</div>
+</section>
   <!-- Contact-->
 <section class="page-section" id="contacto" style="background-image: linear-gradient(to top left, 
     rgba(70, 130, 180, 0.9),  /* Azul más fuerte en una esquina */
