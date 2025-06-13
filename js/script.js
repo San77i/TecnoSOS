@@ -22,7 +22,7 @@ const calcularCotizacion = async () => {
     };
 
     try {
-        const response = await fetch("https://tecnosos.onrender.com/Cotizar", {
+        const response = await fetch("https://tecnosos.onrender.com/Cotizador", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
