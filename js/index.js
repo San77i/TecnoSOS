@@ -30,7 +30,7 @@ const precios = {
   guiones: 30
 };
 
-app.post("/Cotizador", (req, res) => {
+app.post("/cotizador", (req, res) => {
   const s = req.body;
   let total = 0;
 
