@@ -13,7 +13,7 @@ const calcularCotizacion = async () => {
     const seleccion = {
         redes_sociales: document.getElementById("redes_sociales").value,
         reels: document.getElementById("reels").value,
-        feeds: document.getElementById("flyers").value,
+        flyers: document.getElementById("flyers").value,
         portadas: document.getElementById("portadas").value,
         embudo: document.getElementById("embudo").checked,
         leads: document.getElementById("leads").checked,
