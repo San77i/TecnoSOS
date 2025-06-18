@@ -40,7 +40,7 @@ app.post("/cotizador", (req, res) => {
   if (s.reels && precios.reels[s.reels]) {
     total += precios.reels[s.reels];
   }
-  if (s.feeds && precios.flyers[s.feeds]) {
+  if (s.feeds && precios.flyers[s.flyers]) {
     total += precios.flyers[s.feeds];
   }
   if (s.portadas && precios.portadas[s.portadas]) {
