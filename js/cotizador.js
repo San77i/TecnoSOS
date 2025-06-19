@@ -18,7 +18,7 @@ const calcularCotizacion = async () => {
         // En tu backend, la propiedad esperada es 'flyers'.
         // Aquí estás usando document.getElementById("feeds").value,
         // ¡Debería ser document.getElementById("flyers").value si tu HTML usa id="flyers"!
-        flyers: document.getElementById("flyers").value, // <-- CORRECCIÓN POTENCIAL AQUÍ, si tu HTML es <select id="flyers">
+        flyers: document.getElementById("feeds").value, // <-- CORRECCIÓN POTENCIAL AQUÍ, si tu HTML es <select id="flyers">
         portadas: document.getElementById("portadas").value,
         embudo: document.getElementById("embudo").checked,
         leads: document.getElementById("leads").checked,
