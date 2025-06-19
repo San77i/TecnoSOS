@@ -27,7 +27,7 @@ const calcularCotizacion = async () => {
     console.log("Valores de seleccion (Frontend):", seleccion); 
 
     try {
-        const response = await fetch("https://tecnosos.onrender.com/Cotizar", {
+        const response = await fetch("https://tecnosos.onrender.com/Cotizar", 
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
