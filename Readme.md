@@ -9,7 +9,7 @@
 ✅ Brindar un servicio integral para empresas y emprendedores que necesitan presencia digital y optimización de procesos tecnológicos.  
 ✅ Ofrecer una experiencia intuitiva a los clientes mediante una plataforma clara y accesible.  
 ✅ Implementar una calculadora cotizadora de servicios donde los clientes seleccionan lo que necesitan sin ver los precios, obteniendo el total calculado desde el backend.  
-✅ Asegurar un backend seguro y eficiente en **Firebase/github** para manejar cotizaciones y datos de clientes.  
+✅ Asegurar un backend seguro y eficiente en **render/github** para manejar cotizaciones y datos de clientes.  
 
 ---
 
@@ -53,7 +53,7 @@ cd tecnosos
 
 # 📊 Calculadora Cotizadora de Servicios  
 
-Este proyecto es una **calculadora cotizadora de servicios** diseñada para permitir a los clientes seleccionar diferentes opciones sin visualizar los precios. Luego, el backend en **Firebase Functions con Node.js** calcula el costo total y lo devuelve al usuario.  
+Este proyecto es una **calculadora cotizadora de servicios** diseñada para permitir a los clientes seleccionar diferentes opciones sin visualizar los precios. Luego, el backend en **render Functions con Node.js** calcula el costo total y lo devuelve al usuario.  
 
 ---
 
@@ -61,7 +61,7 @@ Este proyecto es una **calculadora cotizadora de servicios** diseñada para perm
 
 ✅ Ofrecer una forma sencilla e intuitiva para que los clientes seleccionen servicios sin ver los precios.  
 ✅ Mantener la seguridad ocultando los precios en el backend.  
-✅ Integrar la solución en una página web alojada en Firebase.  
+✅ Integrar la solución en una página web alojada en render.  
 ✅ Facilitar el mantenimiento y escalabilidad del sistema.  
 
 ---
@@ -69,10 +69,10 @@ Este proyecto es una **calculadora cotizadora de servicios** diseñada para perm
 ## 🚀 Características  
 
 ✔ **Interfaz dinámica** con HTML, CSS y JavaScript.  
-✔ **Backend seguro** con Node.js en Firebase Functions.  
+✔ **Backend seguro** con Node.js en render Functions.  
 ✔ **Precios ocultos en el servidor**, evitando su exposición en el frontend.  
 ✔ **Cálculo automático del total** basado en los servicios seleccionados.  
-✔ **Desplegable en Firebase Hosting** con integración en tiempo real.  
+✔ **Desplegable en github pages** con integración en tiempo real.  
 
 ---
 
@@ -85,7 +85,7 @@ Este proyecto es una **calculadora cotizadora de servicios** diseñada para perm
 
 | Tecnología  | Uso |
 |-------------|------------------|
-| **Firebase** | Hosting y backend serverless |
+| **render+github** | Hosting y backend serverless |
 | **Node.js**  | Lógica del backend |
 | **Express.js** | API para manejar peticiones |
 | **HTML5, CSS3** | Interfaz de usuario |
@@ -103,8 +103,8 @@ cd calculadora-cotizadora
 cd functions
 npm install
 
-firebase login
-firebase init
+render login
+render init
 
 
 {
