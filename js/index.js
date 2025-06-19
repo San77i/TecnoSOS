@@ -22,7 +22,7 @@ const precios = {
     "todas": 300
   },
   reels: { "10": 300, "20": 600, "30": 900, "40": 1200 },
-  flyers: { "10": 150, "20": 300, "30": 450, "40": 600 },
+  feeds: { "10": 150, "20": 300, "30": 450, "40": 600 },
   portadas: { "1": 20, "2": 40, "3": 60, "4": 80 },
   pagina_web: { "1": 400, "2": 800, "3": 1200, "4": 1600 },
   embudo: 200,
@@ -40,8 +40,8 @@ app.post("/cotizador", (req, res) => {
   if (s.reels && precios.reels[s.reels]) {
     total += precios.reels[s.reels];
   }
-  if (s.flyers && precios.flyers[s.feeds]) {
-    total += precios.flyers[s.feeds];
+  if (s.feeds && precios.feeds[s.feeds]) {
+    total += precios.feeds[s.feeds];
   }
   if (s.portadas && precios.portadas[s.portadas]) {
     total += precios.portadas[s.portadas];
