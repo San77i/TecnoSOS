@@ -57,14 +57,16 @@ campos.forEach(id => {
     const campo = document.getElementById(id);
     if (campo) {
         campo.addEventListener("change", calcularCotizacion);
-     
-    if (campo.tagName === 'SELECT') { 
-            campo.addEventListener("click", calcularCotizacion); 
-            
+
         
-    if (campo.type === "checkbox") {
+        if (campo.tagName === 'SELECT') {
             campo.addEventListener("click", calcularCotizacion);
-           }
+        }
+
+        
+        if (campo.type === "checkbox") {
+            campo.addEventListener("click", calcularCotizacion);
         }
     }
+});
 });
