@@ -12,7 +12,8 @@ v2.0/
 ├── js/
 │ └── calculadora.js
 └── assets/
-└── img/
+├── navbar-logo.svg
+├── navbar-logo1.svg
 ├── dashboard.gif
 └── favicon.ico
 
