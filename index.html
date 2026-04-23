@@ -137,10 +137,10 @@
             <h2>Cotizador de Servicios</h2>
             <p>Configurá los servicios que necesitás. El total se calcula automáticamente en tiempo real.</p>
             
-            <!-- Selects con los mismos IDs originales -->
+            <!-- Redes Sociales -->
             <div class="select-group">
                 <label for="redes_sociales"><i class="fas fa-hashtag"></i> Redes Sociales</label>
-                <select id="redes_sociales">
+                <select id="redes_sociales" onchange="calcularTotal()">
                     <option value="">Seleccioná una opción</option>
                     <option value="instagram">Instagram</option>
                     <option value="facebook">Facebook</option>
@@ -157,9 +157,10 @@
             </div>
 
             <div class="select-row">
+                <!-- Reels -->
                 <div class="select-group">
                     <label for="reels"><i class="fas fa-video"></i> Reels Mensuales</label>
-                    <select id="reels">
+                    <select id="reels" onchange="calcularTotal()">
                         <option value="">Seleccioná</option>
                         <option value="10">10 Mensuales</option>
                         <option value="20">20 Mensuales</option>
@@ -167,9 +168,10 @@
                         <option value="40">40 Mensuales</option>
                     </select>
                 </div>
+                <!-- Flyers -->
                 <div class="select-group">
                     <label for="flyers"><i class="fas fa-image"></i> Flyers Mensuales</label>
-                    <select id="flyers">
+                    <select id="flyers" onchange="calcularTotal()">
                         <option value="">Seleccioná</option>
                         <option value="10">10 Mensuales</option>
                         <option value="20">20 Mensuales</option>
@@ -180,9 +182,10 @@
             </div>
 
             <div class="select-row">
+                <!-- Portadas -->
                 <div class="select-group">
                     <label for="portadas"><i class="fas fa-paint-brush"></i> Portadas Mensuales</label>
-                    <select id="portadas">
+                    <select id="portadas" onchange="calcularTotal()">
                         <option value="">Seleccioná</option>
                         <option value="1">1 Mensual</option>
                         <option value="2">2 Mensuales</option>
@@ -190,9 +193,10 @@
                         <option value="4">4 Mensuales</option>
                     </select>
                 </div>
+                <!-- Páginas Web -->
                 <div class="select-group">
                     <label for="pagina_web"><i class="fas fa-globe"></i> Páginas Web por Proyecto</label>
-                    <select id="pagina_web">
+                    <select id="pagina_web" onchange="calcularTotal()">
                         <option value="">Seleccioná</option>
                         <option value="1">1 Página</option>
                         <option value="2">2 Páginas</option>
@@ -202,18 +206,18 @@
                 </div>
             </div>
 
-            <!-- Checkboxes con los mismos IDs originales -->
+            <!-- Checkboxes -->
             <div class="checkbox-group">
                 <div class="service-checkbox">
-                    <input type="checkbox" id="embudo">
+                    <input type="checkbox" id="embudo" onchange="calcularTotal()">
                     <label for="embudo"><strong>Embudo MKT y Automatización</strong></label>
                 </div>
                 <div class="service-checkbox">
-                    <input type="checkbox" id="leads">
+                    <input type="checkbox" id="leads" onchange="calcularTotal()">
                     <label for="leads"><strong>Leads Calificados</strong></label>
                 </div>
                 <div class="service-checkbox">
-                    <input type="checkbox" id="guiones">
+                    <input type="checkbox" id="guiones" onchange="calcularTotal()">
                     <label for="guiones"><strong>Guiones para Campañas</strong></label>
                 </div>
             </div>
@@ -221,7 +225,7 @@
             <p class="disclaimer">* Todos los precios están expresados en Dólares Estadounidenses (USD).</p>
         </div>
         
-        <!-- Total Box - Mantiene el id="total" para tu estructura -->
+        <!-- Total Box -->
         <div class="total-box">
             <p class="total-label">INVERSIÓN ESTIMADA</p>
             <h3 id="total">$0</h3>
@@ -231,8 +235,6 @@
         </div>
     </div>
 </section>
-
-        <!-- ==================== CONTACTO ==================== -->
 	<!-- ==================== CONTACTO ==================== -->
 		<section id="contacto" class="contact-grid">
 			<!-- Columna izquierda: Formulario -->
