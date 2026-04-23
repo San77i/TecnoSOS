@@ -104,21 +104,31 @@
         }
     }
 
-    function inicializarCotizador() {
-        camposCotizador.forEach(function(id) {
-            var campo = document.getElementById(id);
-            if (campo) {
-                campo.addEventListener('change', actualizarTotal);
-                
-                if (campo.type === 'checkbox') {
-                    campo.addEventListener('click', actualizarTotal);
-                }
+   function inicializarCotizador() {
+    camposCotizador.forEach(function(id) {
+        var campo = document.getElementById(id);
+        if (campo) {
+            // Eventos para desktop
+            campo.addEventListener('change', actualizarTotal);
+            
+            // Evento extra para móviles (select)
+            if (campo.tagName === 'SELECT') {
+                campo.addEventListener('input', actualizarTotal);
+                // Para iOS Safari
+                campo.addEventListener('blur', actualizarTotal);
             }
-        });
-        
-        actualizarTotal();
-        console.log('TecnoSOS: Calculadora inicializada correctamente.');
-    }
+            
+            // Evento para checkboxes en móvil
+            if (campo.type === 'checkbox') {
+                campo.addEventListener('click', actualizarTotal);
+                campo.addEventListener('touchend', actualizarTotal);
+            }
+        }
+    });
+    
+    actualizarTotal();
+    console.log('TecnoSOS: Calculadora inicializada correctamente.');
+}
 
     // =============================================
     // PARTE 2: FORMULARIO DE CONTACTO
