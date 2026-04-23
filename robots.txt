@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /legales/
+
+Sitemap: https://www.tecnosos.net/sitemap.xml
