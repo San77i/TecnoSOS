@@ -1,8 +1,7 @@
 /**
- * TecnoSOS - Versión Final Certificada para Android
+ * TecnoSOS - Versión Final Certificada
  */
 
-// 1. Configuraciones de Precios
 const CONFIG_TECNO = {
     redes: {
         'instagram': 150, 'facebook': 150, 'whatsapp': 120, 'linkedin': 180,
@@ -11,57 +10,35 @@ const CONFIG_TECNO = {
         'todas': 450
     },
     unitarios: {
-        'reels': 15,
-        'flyers': 12,
-        'portadas': 40,
-        'pagina_web': 800
+        'reels': 15, 'flyers': 12, 'portadas': 40, 'pagina_web': 800
     },
     adicionales: {
-        'embudo': 350,
-        'leads': 500,
-        'guiones': 200
+        'embudo': 350, 'leads': 500, 'guiones': 200
     }
 };
 
-// 2. Función de Cálculo (Ahora es una constante para evitar sobreescritura)
 const calcularTotal = function() {
     let total = 0;
-
     try {
-        // Redes Sociales
         const redes = document.getElementById('redes_sociales');
         if (redes && CONFIG_TECNO.redes[redes.value]) {
             total += CONFIG_TECNO.redes[redes.value];
         }
-
-        // Cantidades multiplicables
         ['reels', 'flyers', 'portadas', 'pagina_web'].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
-                const cantidad = parseInt(el.value) || 0;
-                total += (cantidad * CONFIG_TECNO.unitarios[id]);
+                total += (parseInt(el.value) || 0) * CONFIG_TECNO.unitarios[id];
             }
         });
-
-        // Checkboxes
         ['embudo', 'leads', 'guiones'].forEach(id => {
             const check = document.getElementById(id);
-            if (check && check.checked) {
-                total += CONFIG_TECNO.adicionales[id];
-            }
+            if (check && check.checked) total += CONFIG_TECNO.adicionales[id];
         });
-
-        // Mostrar resultado
         const display = document.getElementById('total');
-        if (display) {
-            display.textContent = '$' + total.toLocaleString('en-US');
-        }
-    } catch (err) {
-        console.error("Error en calculador:", err);
-    }
+        if (display) display.textContent = '$' + total.toLocaleString('en-US');
+    } catch (err) { console.error("Error:", err); }
 };
 
-// 3. Gestión del Formulario con Fetch (CORS optimizado)
 function setupForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
@@ -69,25 +46,36 @@ function setupForm() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitButton');
+        const success = document.getElementById('submitSuccessMessage');
+        const errorMsg = document.getElementById('submitErrorMessage');
         
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        if(success) success.style.display = 'none';
+        if(errorMsg) errorMsg.style.display = 'none';
+
+        // Usamos FormData directamente
+        const formData = new FormData(form);
 
         fetch('https://c2801338.ferozo.com/enviar_correo.php', {
             method: 'POST',
-            mode: 'no-cors',
-            body: new FormData(form)
-            
+            body: formData,
+            // IMPORTANTE: Quitamos mode: 'no-cors' para poder leer la respuesta
         })
         .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            document.getElementById('submitSuccessMessage').style.display = 'block';
-            form.reset();
-            calcularTotal();
+            // Si el servidor responde 200-299, es éxito
+            if (response.ok) {
+                if(success) success.style.display = 'block';
+                form.reset();
+                calcularTotal();
+            } else {
+                throw new Error('Servidor respondió con error');
+            }
         })
         .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('submitErrorMessage').style.display = 'block';
+            console.error('Error capturado:', error);
+            // Intentamos mostrar el error solo si realmente falló el envío
+            if(errorMsg) errorMsg.style.display = 'block';
         })
         .finally(() => {
             btn.disabled = false;
@@ -96,18 +84,11 @@ function setupForm() {
     });
 }
 
-// 4. Inicialización Robusta
 (function() {
-    // Hacemos que la función sea visible para los "onchange" del HTML
     window.calcularTotal = calcularTotal;
-
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        setupForm();
-        calcularTotal();
+        setupForm(); calcularTotal();
     } else {
-        document.addEventListener('DOMContentLoaded', () => {
-            setupForm();
-            calcularTotal();
-        });
+        document.addEventListener('DOMContentLoaded', () => { setupForm(); calcularTotal(); });
     }
 })();
