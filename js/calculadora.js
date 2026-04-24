@@ -57,7 +57,7 @@ function setupForm() {
         // Usamos FormData directamente
         const formData = new FormData(form);
 
-        fetch('https://c2801338.ferozo.com/form/enviar_correo.php', {
+        fetch('https://formspree.io/f/mqewnawa', {
             method: 'POST',
             body: formData,
             // IMPORTANTE: Quitamos mode: 'no-cors' para poder leer la respuesta
