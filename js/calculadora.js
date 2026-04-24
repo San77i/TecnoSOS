@@ -57,7 +57,7 @@ function setupForm() {
         // Usamos FormData directamente
         const formData = new FormData(form);
 
-        fetch('./enviar_correo.php', {
+        fetch('https://www.tecnosos.net/enviar_correo.php', {
             method: 'POST',
             body: formData,
             // IMPORTANTE: Quitamos mode: 'no-cors' para poder leer la respuesta
