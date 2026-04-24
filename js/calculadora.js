@@ -75,8 +75,9 @@ function setupForm() {
 
         fetch('https://c2801338.ferozo.com/enviar_correo.php', {
             method: 'POST',
-            body: new FormData(form),
-            mode: 'cors'
+            mode: 'no-cors',
+            body: new FormData(form)
+            
         })
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
