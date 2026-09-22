@@ -271,10 +271,38 @@
 		<div class="contact-form">
 			<h2>Transformemos tu negocio</h2>
 			<p>Déjanos tus datos y un especialista en ERP y Marketing Digital te contactará en menos de 2 horas.</p>
-			
-				<div class="iframe-wrapper" style="margin-top: 20px; border-radius: 12px; overflow: hidden; background: #ffffff; display: flex; justify-content: center;">
-  				  <iframe src="" width="100%" height="850px" frameborder="0" allowtransparency="true"></iframe>
-				</div>
+
+	<!-- ==================== FORM MAIL CONTACTO ==================== -->		
+				<form action="/submit-form" method="POST" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px; width: 100%;">
+    
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+        <label for="name" style="color: #ffffff; font-weight: 500; font-size: 14px;">Nombre Completo</label>
+        <input type="text" name="name" id="name" required placeholder="Ej. Juan Pérez" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+        <label for="email" style="color: #ffffff; font-weight: 500; font-size: 14px;">Correo Electrónico</label>
+        <input type="email" name="email" id="email" required placeholder="ejemplo@correo.com" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+        <label for="phone" style="color: #ffffff; font-weight: 500; font-size: 14px;">Teléfono / WhatsApp</label>
+        <input type="tel" name="phone" id="phone" placeholder="Ej. +52 618 123 4567" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+        <label for="message" style="color: #ffffff; font-weight: 500; font-size: 14px;">¿En qué podemos ayudarte?</label>
+        <textarea name="message" id="message" rows="4" required placeholder="Cuéntanos brevemente sobre tu negocio..." style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box; resize: vertical;"></textarea>
+    </div>
+
+    <!-- Campo "trampa" invisible para desviar robots (Honeypot Anti-Spam) -->
+    <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
+
+    <button type="submit" style="background: #0070f3; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 10px; width: 100%;">
+        Enviar Mensaje
+    </button>
+</form>
+<!-- ==================== fin form CONTACTO ==================== -->
 		</div>
     
     <!-- Columna derecha: Info de contacto -->
