@@ -2,7 +2,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Intercepter el envío del formulario en /submit-form
+    // Interceptar exclusivamente la ruta del formulario
     if (request.method === "POST" && url.pathname === "/submit-form") {
       try {
         const formData = await request.formData();
@@ -11,12 +11,12 @@ export default {
         const phone = formData.get("phone");
         const message = formData.get("message");
 
-        // Protección básica Anti-Spam
+        // Validación Anti-Spam básica
         if (formData.get("botcheck")) {
           return new Response("Spam detectado", { status: 400 });
         }
 
-        // Llamar a la API de Resend usando tu secreto guardado
+        // Llamar de forma segura a la API externa de Resend usando tu secreto
         const emailResponse = await fetch("https://resend.com", {
           method: "POST",
           headers: {
@@ -38,74 +38,23 @@ export default {
         });
 
         if (emailResponse.ok) {
-          // Respuesta HTML completa con redirección automática en 5 segundos
+          // Renderizar directamente la pantalla de éxito estilizada
           return new Response(`
             <!DOCTYPE html>
             <html lang="es">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <!-- Redirección automática del navegador después de 5 segundos -->
-                <meta http-equiv="refresh" content="5;url=${url.origin}">
+                <meta http-equiv="refresh" content="5;url=https://tecnosos.net">
                 <title>¡Gracias por escribirnos! - TecnoSOS</title>
                 <link rel="stylesheet" href="https://cloudflare.com">
                 <style>
-                    body {
-                        margin: 0;
-                        padding: 0;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                        background: #0f172a;
-                        color: #ffffff;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100vh;
-                        text-align: center;
-                    }
-                    .card {
-                        background: #1e293b;
-                        padding: 40px 30px;
-                        border-radius: 16px;
-                        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-                        max-width: 500px;
-                        width: 90%;
-                        border: 1px solid #334155;
-                    }
-                    .icon {
-                        font-size: 50px;
-                        color: #10b981;
-                        margin-bottom: 20px;
-                    }
-                    h1 {
-                        font-size: 26px;
-                        margin-bottom: 15px;
-                        color: #f8fafc;
-                    }
-                    p {
-                        font-size: 16px;
-                        color: #94a3b8;
-                        line-height: 1.6;
-                        margin-bottom: 20px;
-                    }
-                    .redirect-text {
-                        font-size: 14px;
-                        color: #64748b;
-                        margin-top: 15px;
-                    }
-                    .btn {
-                        display: inline-block;
-                        background: #0070f3;
-                        color: white;
-                        text-decoration: none;
-                        padding: 10px 20px;
-                        border-radius: 8px;
-                        font-weight: bold;
-                        font-size: 14px;
-                        transition: background 0.2s;
-                    }
-                    .btn:hover {
-                        background: #0056b3;
-                    }
+                    body { margin: 0; padding: 0; font-family: sans-serif; background: #0f172a; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+                    .card { background: #1e293b; padding: 40px 30px; border-radius: 16px; max-width: 500px; width: 90%; border: 1px solid #334155; }
+                    .icon { font-size: 50px; color: #10b981; margin-bottom: 20px; }
+                    h1 { font-size: 26px; margin-bottom: 15px; }
+                    p { font-size: 16px; color: #94a3b8; line-height: 1.6; }
+                    .redirect-text { font-size: 14px; color: #64748b; margin-top: 15px; }
                 </style>
             </head>
             <body>
@@ -114,17 +63,13 @@ export default {
                     <h1>¡Mensaje Recibido!</h1>
                     <p>Gracias por comunicarte con nosotros, a la brevedad nuestro equipo se contactará contigo.</p>
                     <p class="redirect-text">Serás redirigido a la página de inicio en <span id="countdown">5</span> segundos...</p>
-                    <a href="${url.origin}" class="btn">Volver ahora</a>
                 </div>
-
                 <script>
-                    // Contador visual regresivo para mejorar la experiencia del usuario
                     let seconds = 5;
                     const countdownElement = document.getElementById('countdown');
-                    const interval = setInterval(() => {
+                    setInterval(() => {
                         seconds--;
                         if (countdownElement) countdownElement.textContent = seconds;
-                        if (seconds <= 0) clearInterval(interval);
                     }, 1000);
                 </script>
             </body>
@@ -134,7 +79,7 @@ export default {
             headers: { "Content-Type": "text/html; charset=utf-8" }
           });
         } else {
-          return new Response("Error al enviar el correo. Por favor, intenta de nuevo.", { status: 500 });
+          return new Response("Error al enviar el correo a través de la API", { status: 500 });
         }
 
       } catch (err) {
@@ -142,7 +87,7 @@ export default {
       }
     }
 
-    // Permitir el tráfico normal de las páginas estáticas
-    return env.ASSETS.fetch(request);
+    // Método universal de Cloudflare Pages para dejar pasar el tráfico estático normal
+    return fetch(request);
   }
 };
