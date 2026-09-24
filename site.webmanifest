@@ -1,0 +1,16 @@
+{
+    "name": "TecnoSOS - ERP & Marketing Digital",
+    "short_name": "TecnoSOS",
+    "description": "Consultoría en optimización de procesos ERP y posicionamiento digital para empresas.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#0070f3",
+    "icons": [
+        {
+            "src": "assets/favicon.ico",
+            "sizes": "192x192",
+            "type": "image/gif"
+        }
+    ]
+}
