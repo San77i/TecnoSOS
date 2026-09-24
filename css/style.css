@@ -969,4 +969,19 @@ a {
     .total-box {
         padding: 24px;
     }
+
+   /* --- Estilos para el Acordeón de FAQs de TecnoSOS --- */
+   details[open] {
+       border-color: #0070f3 !important;
+       background: #1e293b !important;
+   }
+
+   details[open] summary .icon-arrow {
+       transform: rotate(45deg);
+       color: #ef4444 !important;
+   }
+
+   details summary::-webkit-details-marker {
+       display: none;
+   }
 }
