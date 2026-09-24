@@ -971,17 +971,18 @@ a {
     }
 
    /* --- Estilos para el Acordeón de FAQs de TecnoSOS --- */
-   details[open] {
-       border-color: #0070f3 !important;
-       background: #1e293b !important;
-   }
+  details.service-checkbox[open] {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent, #0070f3);
+}
 
-   details[open] summary .icon-arrow {
-       transform: rotate(45deg);
-       color: #ef4444 !important;
-   }
+details.service-checkbox[open] summary .icon-arrow {
+    transform: rotate(45deg);
+    color: #ef4444 !important;
+}
 
-   details summary::-webkit-details-marker {
-       display: none;
-   }
+details.service-checkbox summary::-webkit-details-marker {
+    display: none;
+}
+
 }
