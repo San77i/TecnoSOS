@@ -985,4 +985,38 @@ details.service-checkbox summary::-webkit-details-marker {
     display: none;
 }
 
+/* 1. Oscurecer el gris medio global para fondos blancos */
+:root {
+    --gray-medium: #475569; /* Era #64748b. Ahora es más oscuro y legible */
+}
+
+/* 2. Asegurar contraste en el texto pequeño del Logo */
+.logo-text small {
+    color: #475569; /* Era #64748b */
+}
+
+/* 3. Asegurar contraste en los textos secundarios sobre blanco */
+.section-title p,
+.hero-subtitle,
+.module-item p,
+.contact-form > p,
+.main-footer,
+.main-footer a {
+    color: var(--gray-medium); 
+}
+
+/* 4. Aclarar textos descriptivos sobre el fondo oscuro del Cotizador/FAQs */
+.cotizador-info > p,
+.disclaimer,
+.select-group label,
+details.service-checkbox p,
+.total-period {
+    color: #f1f5f9; /* Era #cbd5e1 o #94a3b8. Ahora es casi blanco para contrastar con el fondo oscuro */
+}
+
+/* 5. Asegurar contraste en los checkboxes del cotizador */
+.service-checkbox label {
+    color: #ffffff; /* Fuerzo a blanco puro sobre el fondo oscuro */
+}
+   
 }
