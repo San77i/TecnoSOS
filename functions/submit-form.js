@@ -23,7 +23,7 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         from: "Web TecnoSOS <info@tecnosos.net>",
-        to: ["info@tecnosos.net"],
+        to: ["info@tecnosos.net", "tecnosos13@gmail.com"],
         subject: `Nuevo contacto de ${name}`,
         html: `
           <h3>Nuevo lead desde el sitio web</h3>
