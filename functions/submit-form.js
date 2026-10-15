@@ -4,18 +4,18 @@ export async function onRequestPost(context) {
 
   try {
     const formData = await request.formData();
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const phone = formData.get("phone");
-    const message = formData.get("message");
+    const name = formData.get("name") || "Sin nombre";
+    const email = formData.get("email") || "";
+    const phone = formData.get("phone") || "No especificado";
+    const message = formData.get("message") || "";
 
-    // Protección básica Anti-Spam
+    // 1. Protección Anti-Spam (Honeypot)
     if (formData.get("botcheck")) {
       return new Response("Spam detectado", { status: 400 });
     }
 
-    // Llamar a la API de Resend usando tu secreto guardado
-    const emailResponse = await fetch("https://resend.com", {
+    // 2. Despacho a Resend API
+    const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${env.RESEND_API_KEY}`,
@@ -24,19 +24,23 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         from: "Web TecnoSOS <info@tecnosos.net>",
         to: ["info@tecnosos.net", "tecnosos13@gmail.com"],
-        subject: `Nuevo contacto de ${name}`,
+        reply_to: email,
+        subject: `Nuevo contacto web: ${name}`,
         html: `
-          <h3>Nuevo lead desde el sitio web</h3>
-          <p><strong>Nombre:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Teléfono:</strong> ${phone}</p>
-          <p><strong>Mensaje:</strong> ${message}</p>
+          <div style="font-family: sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px;">
+            <h2 style="color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">Nuevo lead desde TecnoSOS</h2>
+            <p><strong>Nombre:</strong> ${name}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Teléfono / WhatsApp:</strong> ${phone}</p>
+            <p><strong>Mensaje:</strong></p>
+            <blockquote style="background: #f8fafc; border-left: 4px solid #0070f3; padding: 12px 16px; margin: 0; white-space: pre-wrap;">${message}</blockquote>
+          </div>
         `
       })
     });
 
+    // 3. Manejo de respuesta
     if (emailResponse.ok) {
-      // Respuesta HTML con redirección en 5 segundos
       return new Response(`
         <!DOCTYPE html>
         <html lang="es">
@@ -45,7 +49,6 @@ export async function onRequestPost(context) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="refresh" content="5;url=${url.origin}">
             <title>¡Gracias por escribirnos! - TecnoSOS</title>
-            <link rel="stylesheet" href="https://cloudflare.com">
             <style>
                 body {
                     margin: 0;
@@ -107,7 +110,7 @@ export async function onRequestPost(context) {
         </head>
         <body>
             <div class="card">
-                <div class="icon"><i class="fas fa-check-circle"></i></div>
+                <div class="icon">&#10004;</div>
                 <h1>¡Mensaje Recibido!</h1>
                 <p>Gracias por comunicarte con nosotros, a la brevedad nuestro equipo se contactará contigo.</p>
                 <p class="redirect-text">Serás redirigido a la página de inicio en <span id="countdown">5</span> segundos...</p>
@@ -130,10 +133,13 @@ export async function onRequestPost(context) {
         headers: { "Content-Type": "text/html; charset=utf-8" }
       });
     } else {
-      return new Response("Error al enviar el correo a través de la API. Verifica tus credenciales.", { status: 500 });
+      const errorText = await emailResponse.text();
+      console.error("Resend API Error:", errorText);
+      return new Response(`Error al enviar el correo a través de la API: ${errorText}`, { status: 500 });
     }
 
   } catch (err) {
+    console.error("Error en Pages Function:", err);
     return new Response("Error interno del servidor en la función", { status: 500 });
   }
 }
