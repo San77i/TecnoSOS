@@ -526,6 +526,12 @@
         }
         errorBox.hidden = true;
     }, true);
+	    // Si el usuario vuelve con la flecha "atrás", se genera un token nuevo
+    window.addEventListener('pageshow', function (e) {
+        if (e.persisted && window.turnstile) {
+            window.turnstile.reset();
+        }
+    });
 })();
 </script>
 
