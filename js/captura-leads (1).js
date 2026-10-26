@@ -1,11 +1,16 @@
 /* ============================================================================
    Tecnosos · Captura de leads hacia el CRM
-   Pegar este bloque justo antes de </body> en las páginas que tengan formularios
-   (por ejemplo index.html), o guardarlo como captura-leads.js e incluirlo con:
-   <script src="captura-leads.js" defer></script>
+   Incluir con: <script src="js/captura-leads.js" defer></script>
 
    No cambia lo que el formulario hace hoy (sigue enviando su correo como siempre):
    solo AVISA al CRM, en segundo plano, para que cree el lead.
+
+   CAMBIOS:
+   - Escucha el envío en fase "bubble" y respeta defaultPrevented: así solo avisa
+     al CRM cuando el formulario pasó la validación antispam (Turnstile, honeypots,
+     nombre y email/teléfono). Antes se ejecutaba primero y mandaba todo, incluso
+     envíos bloqueados o de bots.
+   - Corrige la lectura de los checkboxes del cotizador (antes enviaba "on").
    ============================================================================ */
 (function () {
   var URL_CRM = "https://bqskeefumyyeadbqsvru.supabase.co/functions/v1/nuevo-lead";
@@ -25,12 +30,18 @@
     for (var i = 0; i < els.length; i++) {
       var e = els[i];
       if (/^(submit|button|hidden|checkbox|radio|password|file)$/i.test(e.type)) continue;
+      if (e.name === "website") continue; // honeypot: nunca leerlo como dato
       var clave = ((e.name || "") + " " + (e.id || "") + " " + (e.placeholder || "") + " " + (e.type || "")).toLowerCase();
       var lab = e.id ? form.querySelector('label[for="' + e.id + '"]') : null;
       if (lab) clave += " " + String(lab.textContent || "").toLowerCase();
       if (patron.test(clave) && valor(e)) return valor(e);
     }
     return "";
+  }
+  // Busca el texto de la etiqueta de un checkbox (sirve si la etiqueta lo envuelve o si usa for="id")
+  function textoEtiqueta(c) {
+    var l = c.closest("label") || (c.id ? document.querySelector('label[for="' + c.id + '"]') : null);
+    return String((l && (l.innerText || l.textContent)) || "").trim();
   }
   // Si en la página está el Cotizador Express, lee lo que el cliente eligió y el total estimado
   function cotizador() {
@@ -39,7 +50,7 @@
     var servicios = [];
     box.querySelectorAll("select").forEach(function (s) { var o = s.options[s.selectedIndex]; if (o && o.value) servicios.push(String(o.text || "").trim()); });
     box.querySelectorAll("input[type=checkbox]:checked, input[type=radio]:checked").forEach(function (c) {
-      var l = c.closest("label"); servicios.push(String((l && l.innerText) || c.value || "").trim());
+      var t = textoEtiqueta(c); if (t) servicios.push(t);
     });
     var txt = String(box.innerText || box.textContent || "");
     var m = txt.match(/INVERSI[ÓO]N ESTIMADA[\s\S]{0,60}?(\$\s*[\d.,]+(?:\s*(?:USD|ARS|U\$S))?)/i);
@@ -57,6 +68,7 @@
   window.tecnososEnviarLead = enviar;
 
   document.addEventListener("submit", function (ev) {
+    if (ev.defaultPrevented) return; // la validación antispam bloqueó el envío: no avisar al CRM
     var f = ev.target;
     if (!f || f.tagName !== "FORM") return;
     var d = {
@@ -66,5 +78,5 @@
     if (!d.email && !d.telefono) return; // no es un formulario de contacto (búsqueda, suscripción, etc.)
     var c = cotizador(); if (c) d.cotizador = c;
     enviar(d);
-  }, true);
+  }, false); // fase "bubble": corre DESPUÉS de la validación del formulario
 })();
