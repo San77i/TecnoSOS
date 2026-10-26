@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +49,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Versión Estable Corregida -->
     <link rel="stylesheet" href="https://cloudflare.com" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+	 <!-- ========== ANTISPAM ========== -->
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+	<script src="captura-leads.js" defer></script>
+	
 	</head>
 <body id="page-top">
 
@@ -304,7 +307,7 @@
 
             <!-- Campo "trampa" invisible para desviar robots (Honeypot Anti-Spam) -->
             <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
-
+			 <div class="cf-turnstile" data-sitekey="TU_SITE_KEY" data-theme="dark" data-language="es"></div>
             <button type="submit" style="background: #111827; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 10px; width: 100%;">
                 Enviar Mensaje
             </button>
