@@ -47,9 +47,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Versión Estable Corregida -->
-    <link rel="stylesheet" href="https://cloudflare.com" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	 <!-- ========== ANTISPAM ========== -->
+    <!-- Font Awesome (CORREGIDO: antes apuntaba a cloudflare.com y los íconos no cargaban) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- ========== ANTISPAM ========== -->
 	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 	<script src="captura-leads.js" defer></script>
 	
@@ -282,32 +283,44 @@
         <h2>Transformemos tu negocio</h2>
         <p>Déjanos tus datos y un especialista en ERP y Marketing Digital te contactará en menos de 2 horas.</p>
 
-        <!-- ==================== FORM MAIL CONTACTO ==================== -->		
-        <form action="https://contacto.tecnosos.net" method="POST" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px; width: 100%;">
-            
+        <!-- ==================== FORM MAIL CONTACTO ==================== -->
+        <form id="form-contacto" action="https://contacto.tecnosos.net" method="POST" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px; width: 100%; position: relative;">
+
             <div style="display: flex; flex-direction: column; gap: 5px;">
-                <label for="name" style="color: #ffffff; font-weight: 500; font-size: 14px;">Nombre Completo</label>
-                <input type="text" name="name" id="name" required placeholder="Ej. Juan Pérez" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
+                <label for="name" style="color: #ffffff; font-weight: 500; font-size: 14px;">Nombre Completo *</label>
+                <input type="text" name="name" id="name" required minlength="2" autocomplete="name" placeholder="Ej. Juan Pérez" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 5px;">
                 <label for="email" style="color: #ffffff; font-weight: 500; font-size: 14px;">Correo Electrónico</label>
-                <input type="email" name="email" id="email" required placeholder="ejemplo@correo.com" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
+                <input type="email" name="email" id="email" autocomplete="email" placeholder="ejemplo@correo.com" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 5px;">
                 <label for="phone" style="color: #ffffff; font-weight: 500; font-size: 14px;">Teléfono / WhatsApp</label>
-                <input type="tel" name="phone" id="phone" placeholder="Ej. +52 618 123 4567" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
+                <input type="tel" name="phone" id="phone" autocomplete="tel" placeholder="Ej. +52 618 123 4567" style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box;">
+                <small style="color: #cbd5e1; font-size: 13px;">Déjanos al menos un correo o un teléfono para poder responderte.</small>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 5px;">
-                <label for="message" style="color: #ffffff; font-weight: 500; font-size: 14px;">¿En qué podemos ayudarte?</label>
+                <label for="message" style="color: #ffffff; font-weight: 500; font-size: 14px;">¿En qué podemos ayudarte? *</label>
                 <textarea name="message" id="message" rows="4" required placeholder="Cuéntanos brevemente sobre tu negocio..." style="padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; box-sizing: border-box; resize: vertical;"></textarea>
             </div>
 
-            <!-- Campo "trampa" invisible para desviar robots (Honeypot Anti-Spam) -->
+            <!-- Honeypot 1: campo "trampa" invisible -->
             <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
-			 <div class="cf-turnstile" data-sitekey="0x4AAAAAAFmGiYS94RsEGdP2" data-theme="dark" data-language="es"></div>
+
+            <!-- Honeypot 2: campo de texto fuera de pantalla (los bots lo completan, las personas no lo ven) -->
+            <div aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+                <label for="website">Sitio web</label>
+                <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Cloudflare Turnstile -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAFmGiYS94RsEGdP2" data-theme="dark" data-language="es"></div>
+
+            <p id="form-error" role="alert" hidden style="color: #fca5a5; font-size: 14px; margin: 0;"></p>
+
             <button type="submit" style="background: #111827; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 10px; width: 100%;">
                 Enviar Mensaje
             </button>
@@ -331,7 +344,7 @@
     </div>
 </section>
 
-<!-- ==================== SECCIÓN FAQS ==================== -->
+<!-- ==================== SECCIÓN FAQS (estructura corregida) ==================== -->
 <section id="faqs" class="cotizador-section" style="max-width: 1200px; margin: 60px auto; box-sizing: border-box;">
     <div class="cotizador-grid">
         
@@ -374,13 +387,8 @@
                         Sí, en TecnoSOS brindamos soporte técnico continuo para garantizar que la transición a tu nuevo ecosistema digital sea fluida. Nuestro equipo te acompaña desde el análisis inicial de procesos y la migración de datos, hasta la capacitación de tu personal y la optimización de los tableros de control de datos.
                     </p>
                 </details>
-                
-            </div> <!-- Cierre de accordion-container -->
-        </div> <!-- Cierre de cotizador-info -->
-    </div> <!-- Cierre de cotizador-grid -->
-</section>
 
-<!-- Pregunta 4 -->
+                <!-- Pregunta 4 -->
                 <details class="service-checkbox" style="display: block; cursor: pointer; width: 100%; box-sizing: border-box;">
                     <summary style="font-weight: 500; font-size: 1.05rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center; width: 100%;">
                         ¿Cuánto tiempo toma ver resultados operativos?
@@ -394,7 +402,7 @@
             </div> <!-- Cierre de accordion-container -->
         </div> <!-- Cierre de cotizador-info -->
 
-        <!-- Columna Derecha: Cuadro Destacado de Soporte (Estilo Total-Box corregido) -->
+        <!-- Columna Derecha: Cuadro Destacado de Soporte -->
         <div class="total-box">
             <span class="total-label">¿TENÉS OTRA CONSULTA?</span>
             <div class="total-box-title" style="font-size: 2.2rem; margin: 16px 0; font-weight: bold; color: white;">Soporte 24/7</div>
@@ -434,7 +442,7 @@
 </main>
 
 <footer class="main-footer">
-    <p>© 2024 TecnoSOS. Todos los derechos reservados. | <a href="legales/politica-privacidad.html">Política de Privacidad</a> | <a href="legales/terminos-servicio.html">Términos de Servicio</a></p>
+    <p>© 2026 TecnoSOS. Todos los derechos reservados. | <a href="legales/politica-privacidad.html">Política de Privacidad</a> | <a href="legales/terminos-servicio.html">Términos de Servicio</a></p>
 </footer>
 
 <!-- Botón Flotante de WhatsApp -->
@@ -460,6 +468,65 @@
             });
         });
     })();
+</script>
+
+<!-- ==================== VALIDACIÓN ANTISPAM DEL FORMULARIO ==================== -->
+<script>
+(function () {
+    var form = document.getElementById('form-contacto');
+    if (!form) return;
+    var errorBox = document.getElementById('form-error');
+
+    function campo(nombre) {
+        var el = form.elements.namedItem(nombre);
+        return el ? (el.type === 'checkbox' ? el.checked : el.value.trim()) : '';
+    }
+
+    function mostrarError(msg) {
+        errorBox.textContent = msg;
+        errorBox.hidden = false;
+    }
+
+    // "true" = fase de captura: corre antes que captura-leads.js
+    form.addEventListener('submit', function (e) {
+        var error = '';
+        var nombre = campo('name');
+        var email = campo('email');
+        var telefono = campo('phone');
+        var digitos = telefono.replace(/\D/g, '');
+        var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+
+        // Si algún honeypot está completo, es un bot: se descarta en silencio
+        if (campo('botcheck') || campo('website')) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            form.reset();
+            return;
+        }
+
+        if (nombre.length < 2) {
+            error = 'Ingresa tu nombre.';
+        } else if (!email && !telefono) {
+            error = 'Déjanos un correo o un teléfono para poder contactarte.';
+        } else if (email && !emailValido) {
+            error = 'El correo no parece válido.';
+        } else if (telefono && digitos.length < 8) {
+            error = 'El teléfono parece incompleto.';
+        } else if (!campo('message')) {
+            error = 'Cuéntanos brevemente en qué podemos ayudarte.';
+        } else if (!campo('cf-turnstile-response')) {
+            error = 'Espera un segundo a que se complete la verificación de seguridad.';
+        }
+
+        if (error) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            mostrarError(error);
+            return;
+        }
+        errorBox.hidden = true;
+    }, true);
+})();
 </script>
 
 <!-- Script JSON-LD Estructurado -->
