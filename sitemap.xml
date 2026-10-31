@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-        <loc>https://tecnosos.net/</loc>
-        <lastmod>2026-09-22</lastmod>
+        <loc>https://www.tecnosos.net/</loc>
+        <lastmod>2026-10-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="es" href="https://www.tecnosos.net/"/>
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tecnosos.net/"/>
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.tecnosos.net/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tecnosos.net/"/>
     </url>
     <url>
-        <loc>https://tecnosos.net/politica-privacidad.html</loc>
-        <lastmod>2026-09-22</lastmod>
-        <changefreq>monthly</changefreq>
+        <loc>https://www.tecnosos.net/legales/politica-privacidad.html</loc>
+        <lastmod>2026-10-31</lastmod>
+        <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://tecnosos.net/terminos-servicio.html</loc>
-        <lastmod>2026-09-22</lastmod>
-        <changefreq>monthly</changefreq>
+        <loc>https://www.tecnosos.net/legales/terminos-servicio.html</loc>
+        <lastmod>2026-10-31</lastmod>
+        <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 </urlset>
